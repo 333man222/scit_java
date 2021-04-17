@@ -39,10 +39,10 @@ public class Example3 {
 		*/
 		
 		int ramen = 1200;
-		int okashi = 1500;
+		int okasi = 1500;
 		int nomimono = 700;
 		
-		int cost = ramen * 2 + okashi * 1 + nomimono * 2;
+		int cost = ramen * 2 + okasi * 1 + nomimono * 2;
 		System.out.println("금액은" + cost + "원 입니다.");
 		
 		/*문제 5

@@ -7,11 +7,14 @@ import java.util.Scanner;
 public class Score {
 
 	public static void main(String[] args) {
-		System.out.println("국어점수, 수학점수, 영어점수를 입력하시오");
+		System.out.println("국어점수, 수학점수, 영어점수를 입력하시오.");
 		Scanner keyin = new Scanner(System.in);
-		int kor, mat, eng, total; 
+		int kor, mat, eng, total;
+		System.out.print("국어 : ");
 		kor = keyin.nextInt();
+		System.out.print("수학 : ");
 		mat = keyin.nextInt();
+		System.out.print("영어 : ");
 		eng = keyin.nextInt();
 		total = (kor + mat + eng) / 3;
 		

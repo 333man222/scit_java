@@ -18,6 +18,8 @@ public class OperTest2 {
 		
 		System.out.println("x= :" + x + ", y= " + y + ", z= " + z);
 		
+		System.out.println("\nx를 y에, y를 z에, z를 x에 넣을 경우의 값은 ? \n");
+		
 		temp = x;
 		x = y;
 		y = z;

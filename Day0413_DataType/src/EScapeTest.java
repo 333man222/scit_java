@@ -7,8 +7,10 @@ public class EScapeTest {
 		int age = 26;
 		double pi = 3.141592;
 		
+		System.out.println(nation + "\t" + city + " \n" + name + "\t" + age + "세");
+		
 		System.out.println("나리나리\n개나리");
-		System.out.println("친구가 말했다. \"오늘은 짜장면을 먹자!\' 라고...");
+		System.out.println("친구가\t 말했다. \"오늘은 짜장면을 먹자!\' 라고...");
 		
 		int a, b, c;
 		
