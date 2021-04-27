@@ -1,4 +1,5 @@
-
+// class는 어떤 역할을 하느냐에 따라서 불리는 이름이 다름
+// ex ) vo, service, dao, dto....
 public class FitnessVO {
 	// userid, name, height, weight, bmi, result
 	private String userid;
@@ -9,10 +10,20 @@ public class FitnessVO {
 	private String result;
 
 	// 생성자(Constructor) : JVM이 만든 기본생성자의 모양과 같음(안 만들더라도 자동생성됨)
-	public FitnessVO() {
+	public FitnessVO() {}
+
+	
+	public FitnessVO(String userid, String name, double height, double weight) {
+		this.userid = userid;
+		this.name = name;
+		this.height = height;
+		this.weight = weight;
+		calcBmi();	
+		calcResult();
 	}
 
-	// source generate getters and setters... 에서 생성가능
+
+	// Source -> Generate Getters and Setters... 에서 생성가능
 	public String getUserid() {
 		return userid;
 	}
@@ -42,6 +53,7 @@ public class FitnessVO {
 	}
 
 	public void setName(String name) {
+	
 		this.name = name;
 	}
 
@@ -55,7 +67,8 @@ public class FitnessVO {
 		calcBmi();
 	}
 
-	public void calcBmi() {
+	protected void calcBmi() {
+		System.out.println("called calcBmi");
 		double temp = this.height / 100; // ==> 미터로 환산
 		this.bmi = this.weight / (temp * temp);
 		calcResult();

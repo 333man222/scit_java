@@ -3,6 +3,8 @@ public class ExamTest {
 
 	public static void main(String[] args) {
 		Exam e = new Exam();
+		FitnessVO vo = new FitnessVO();
+		vo.calcBmi();
 		
 		e.setBookCode("1111");
 		e.setHyouka(5);
