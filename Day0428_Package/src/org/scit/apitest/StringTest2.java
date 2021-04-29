@@ -32,12 +32,12 @@ public class StringTest2 {
 		System.out.println(temp + "0번째 코드값" + code);
 		
 		// 빈 문자열인지의 확인
-		String temp1 = " ";
+		String temp1 = "";		//<<<<<<<<< 어떤 때 true?
 		System.out.println(temp.isEmpty());
 		
 		// 지정한 문자열로 시작하는지  / 끝나는지 여부를 리턴
 		System.out.println(str.startsWith("동"));
-		System.out.println(str.endsWith("닭도록"));
+		System.out.println(str.endsWith("닳도록"));
 		
 		// 부분문자열 뽑아오기 : 지정한 위치부터 끝까지 뽑아옴
 		System.out.println(str.substring(5));

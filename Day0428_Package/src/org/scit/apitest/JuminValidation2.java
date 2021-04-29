@@ -93,7 +93,7 @@ public class JuminValidation2 {
 				continue;
 			}
 		}
-		int temp = 11 - (sum % 11);
+		int temp = (11 - (sum % 11)) % 10;
 		if(temp != checkNumber)
 			return false;
 		

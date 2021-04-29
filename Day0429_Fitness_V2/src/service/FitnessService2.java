@@ -6,7 +6,8 @@ import vo.Fitness;
 
 public class FitnessService2 {
 	Scanner keyin = new Scanner(System.in);
-	Fitness member;
+	Fitness[] list = new Fitness[50];
+	int count = 0;
 	
 	public FitnessService2() {
 		int choice;
@@ -25,7 +26,7 @@ public class FitnessService2 {
 				update();
 				break;
 			case 4 :
-				delete();
+				// delete();
 				break;
 			case 0 :
 				System.out.println("*** 프로그램 종료합니다.");
@@ -50,13 +51,21 @@ public class FitnessService2 {
 		return choice;
 	}
 	public void create() {
-		if(member != null) {
+			
+		if(count >= list.length) {
 			System.out.println("** 회원 가입을 할 수 없습니다.");
 			return;
 		}
 		System.out.println("\n  [[ 회원가입 ]]");
 		System.out.print("> 아이디를 입력 : ");
 		String userid = keyin.next();
+		for(int i =0; i<count;++i) {
+			String uid = list[i].getUserid();
+			if(uid.equals(userid)) {
+				System.out.println("동일한 아이디가 존재합니다.");
+				return;
+			}
+		}
 		
 		System.out.print("> 이름 입력 : ");
 		String name = keyin.next();
@@ -67,54 +76,85 @@ public class FitnessService2 {
 		System.out.print("> 몸무게(kg)를 입력 : ");
 		double weight = keyin.nextDouble();
 		
-		member = new Fitness(userid, name, height, weight); 
+		list[count] = new Fitness(userid, name, height, weight); 
+		count++;
 		System.out.println("** 회원가입이 완료되었습니다.");
+		
+		
 	}
 	public void retrieve() {
-		if(member == null) {
+		if(list[count] == null) {
 			System.out.println("** 조회할 내용이 없습니다.");
 			return;
 		}
-		System.out.println("\n  [[ 조회된 정보 ]]");
-		member.output();
+		System.out.print("> 아이디를 입력 : ");
+		String userid = keyin.next();
+		for(int i =0; i<count;++i) {
+			if(list[i].getUserid() == userid) {
+				System.out.println("회원 정보");
+				list[i].output();
+				return;
+			}
+		}
+		System.out.println("일치하는 정보가 없습니다.");
+
 	}
-	// 키와 몸무게를 입력받는다.
-	// setter
+//	// 키와 몸무게를 입력받는다.
+//	// setter
 	public void update() {
-		if(member == null) {
+		if(list[count] == null) {
 			System.out.println("** 정보가 없습니다.");
 			return;
 		}
-		System.out.println("\n  [[ 정보 수정 ]]");
-		System.out.print("> 키(cm)를 입력 : ");
-		double height = keyin.nextDouble();
+	
 		
-		System.out.print("> 몸무게(kg)를 입력 : ");
-		double weight = keyin.nextDouble();	
-	
-		member.setWeight(weight);
-		member.setHeight(height);
-		System.out.println("** 수정이 완료되었습니다.");
-	
-	}
-	
-	public void delete() {
-		if(member == null) {
-			System.out.println("** 정보가 없습니다.");
-			return;
+		System.out.println("변경 하고 싶은 항목 입력");
+		System.out.println("     1) 신장 수정          ");
+		System.out.println("     2) 몸무게 수정       ");
+		System.out.println("======================");
+		System.out.print("번호 입력 : ");
+		int set = keyin.nextInt();
+
+		while(true) {
+			switch(set){
+			case 1 :
+				System.out.println("\n  [[ 정보 수정 ]]");
+				System.out.print("> 키(cm)를 입력 : ");
+				double height = keyin.nextDouble();
+				list[count].setHeight(height);
+				break;
+			case 2 :
+				System.out.print("> 몸무게(kg)를 입력 : ");
+				double weight = keyin.nextDouble();
+				list[count].setWeight(weight);
+				break;
+				
+			default : 
+				System.out.println("번호를 잘 못 입력하셨습니다.");
+				return;
+			}	
+			System.out.println("** 수정이 완료되었습니다.");
 		}
-		System.out.println("\n  [[ 회원 탈퇴 ]]");
 		
-		member.output();
-		
-		String answer ;
-		System.out.print("** 정말로 탈퇴하시겠습니까(Y/n)?? ");
-		answer = keyin.next();
-		
-		if(answer.equals("Y")) {
-			System.out.println("** 탈퇴 완료 되었습니다");
-			member = null;
-		}
-		System.out.println("** 탈퇴 처리 취소되었습니다.");
 	}
+//	
+//	public void delete() {
+//		if(member == null) {
+//			System.out.println("** 정보가 없습니다.");
+//			return;
+//		}
+//		System.out.println("\n  [[ 회원 탈퇴 ]]");
+//		
+//		member.output();
+//		
+//		String answer ;
+//		System.out.print("** 정말로 탈퇴하시겠습니까(Y/n)?? ");
+//		answer = keyin.next();
+//		
+//		if(answer.equals("Y")) {
+//			System.out.println("** 탈퇴 완료 되었습니다");
+//			member = null;
+//		}
+//		System.out.println("** 탈퇴 처리 취소되었습니다.");
+//	}
 }

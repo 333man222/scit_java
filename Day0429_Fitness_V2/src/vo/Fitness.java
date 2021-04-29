@@ -68,7 +68,6 @@ public class Fitness {
 	}
 
 	protected void calcBmi() {
-		System.out.println("called calcBmi");
 		double temp = this.height / 100; // ==> 미터로 환산
 		this.bmi = this.weight / (temp * temp);
 		calcResult();
