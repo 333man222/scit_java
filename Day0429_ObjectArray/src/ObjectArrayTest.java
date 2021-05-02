@@ -12,6 +12,7 @@ public class ObjectArrayTest {
 
 	public static void main(String[] args) {
 		
+		
 		Student s1 = new Student("1", "全辨悼"); // 按眉 积己
 		
 		Student[] sary = new Student[10];		// 硅凯 积己
