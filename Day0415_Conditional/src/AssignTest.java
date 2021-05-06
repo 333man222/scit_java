@@ -17,8 +17,8 @@ public class AssignTest {
 		System.out.println(data);
 		int value = 0;
 		++value ; 
+		
 		value = value + 1;
-
 		value += 1;
 		value = value -1;
 		value -= 1;

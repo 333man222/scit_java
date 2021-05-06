@@ -27,5 +27,6 @@ public class IfTest3 {
 			System.out.println("당신의 평균점수는 " + score + "점이고, F학점 입니다.");
 		}
 		
+		keyin.close();
 	}
 }
