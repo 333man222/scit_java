@@ -1,0 +1,135 @@
+-- 조건을 주어서 조회하고 싶을 때 (WHERE 조건식)
+-- 비교연산자 : =, !=, >, <, >=, <=
+/*
+SELECT 컬럼명 FROM 테이블명
+WHERE 조건식
+ORDER BY 컬럼명 DESC;
+*/
+
+-- 조건식 : 급여가 10000 이상인 사람의 이름, 급여, 부서번호
+SELECT FIRST_NAME, SALARY, DEPARTMENT_ID
+FROM EMPLOYEES
+WHERE SALARY >= 10000;
+
+-- 급여가 10000 이상인 사람의 이름, 급여, 부서번호 급여별로 내림차순 정렬하시오
+SELECT FIRST_NAME, SALARY, DEPARTMENT_ID
+FROM EMPLOYEES
+WHERE SALARY >= 10000
+ORDER BY SALARY DESC;
+
+-- 100번 부서에 소속된 사람들의 이름, 부서번호, 급여를 이름순으로 오름차순 정렬하여 조회
+SELECT FIRST_NAME, DEPARTMENT_ID, SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 100
+ORDER BY FIRST_NAME;
+
+-- 100번 부서에 소속된 사람들의 이름, 입사일, 급여를 이름순으로 오름차순 정렬하여 조회
+SELECT FIRST_NAME, HIRE_DATE, SALARY
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 100
+ORDER BY FIRST_NAME;
+
+-- 전체 직원들을 대상으로 이름, 입사일, 급여
+SELECT FIRST_NAME, HIRE_DATE, SALARY
+FROM EMPLOYEES;
+
+-- 입사일이 '07/02/07' 이후에 입사한 사람
+SELECT FIRST_NAME, HIRE_DATE, SALARY
+FROM EMPLOYEES
+WHERE HIRE_DATE >= '07/02/07';
+
+-- 입사일이 '07/02/07' 이후에 입사한 사람을 날짜별 오름차순으로 조회
+SELECT FIRST_NAME, HIRE_DATE, SALARY
+FROM EMPLOYEES
+WHERE HIRE_DATE >= '07/02/07'
+ORDER BY HIRE_DATE;
+
+-- 이름, 입사일, 급여, 부서번호 를 조회, 부서별 오름차순, 이름순 오름차순
+SELECT FIRST_NAME, HIRE_DATE, SALARY, DEPARTMENT_ID
+FROM EMPLOYEES
+ORDER BY DEPARTMENT_ID ASC, FIRST_NAME ASC;
+
+-- 이름, 입사일, 급여, 커미션 정보 조회
+SELECT FIRST_NAME, HIRE_DATE, SALARY, COMMISSION_PCT
+FROM EMPLOYEES;
+
+-- 이름, 입사일, 급여, 커미션 정보 조회
+-- 커미션 정보와 같이 null이 있는 데이터를 조건으로 사용할 때 : 
+-- IS NULL, IS NOT NULL
+SELECT FIRST_NAME, HIRE_DATE, SALARY, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE  COMMISSION_PCT = NULL; -- (X)
+
+-- 커미션을 받는 사람정보
+SELECT FIRST_NAME, HIRE_DATE, SALARY, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NOT NULL;
+
+-- 커미션을 안받는 사람정보
+SELECT FIRST_NAME, HIRE_DATE, SALARY, COMMISSION_PCT
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NULL;
+
+-- 매니저가 없는 사람의 이름, 성씨, 직급을 조회
+SELECT FIRST_NAME, LAST_NAME, JOB_ID
+FROM EMPLOYEES
+WHERE MANAGER_ID IS NULL;
+
+-- '당신의 이름은 Willam입니다.'
+SELECT '당신의 이름은 Willam입니다.' FROM DUAL;
+
+-- 문자열 결합 연산자 : || 
+SELECT '당신의 이름은 ' || FIRST_NAME || '입니다.' AS "이름"
+FROM EMPLOYEES;
+
+
+
+
+SELECT SYSDATE as 날짜, SYSTIMESTAMP as "오늘의 시간" FROM DUAL;
+
+
+
+
+-- 값(Literal)의 표시
+/*
+문자열 : '' (""는 리터럴로 사용되지 않는다.)
+숫자 : 24, 42.195
+날짜 : '01/01/09'
+*/
+-- 데이터 타입
+/*
+char(크기) : 고정길이문자열
+    char(10) : 'abc' -> 'abc       '
+varchar2(크기) : 가변길이문자열
+    varchar2(20) : 'abc'
+number(3) : 999  , 1000  
+number(3, 2) : 999.99
+number 
+date  '1919/03/01', sysdate
+
+*/
+
+
+-- SELECT 컬럼명 FROM 테이블명;
+SELECT FIRST_NAME, LAST_NAME, SALARY FROM EMPLOYEES;
+
+SELECT DEPARTMENT_ID FROM EMPLOYEES
+ORDER BY DEPARTMENT_ID DESC;
+
+SELECT DISTINCT DEPARTMENT_ID FROM EMPLOYEES
+ORDER BY DEPARTMENT_ID;
+
+-- 사번, 이름, 부서번호, 급여, 직급
+SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTMENT_ID, SALARY, JOB_ID 
+FROM EMPLOYEES;
+
+-- 사번, 이름, 부서번호, 급여, 직급, 이름 별로 오름차순
+SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTMENT_ID, SALARY, JOB_ID 
+FROM EMPLOYEES
+ORDER BY FIRST_NAME;
+
+-- 사번, 이름, 부서번호, 급여, 직급 급여별로 내림차순
+SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTMENT_ID, SALARY, JOB_ID 
+FROM EMPLOYEES
+ORDER BY SALARY DESC;
+
