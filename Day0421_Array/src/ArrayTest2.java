@@ -16,7 +16,6 @@ public class ArrayTest2 {
 			System.out.print((i+1) + "번째 정수 입력 : ");
 			arr[i] = scanner.nextInt();
 
-
 			if(arr[i] % 3 != 0 || arr[i] == 0) {
 				System.out.println("3의배수만 입력해주세요");
 				--i;

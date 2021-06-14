@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="diet.dao.BodyMapper">
+	<insert id="insertBody" parameterType="Body">
+		INSERT INTO user_body 
+			(user_id, height, weight, user_bmi, body_type, recom_id)
+		VALUES
+			(#{user_id}, #{height}, #{weight}, #{user_bmi}, #{body_type}, #{recom_id})
+	</insert>
+	
+	
+	<select id="selectBody" parameterType="int" resultType="Body">
+		SELECT
+			user_id
+			, height
+			, weight
+			, user_bmi
+			, body_type
+			, recom_id
+		FROM
+			user_body
+		WHERE
+			user_id = #{user_id}
+	</select>
+	
+	<delete id="deleteBody" parameterType="int">
+		DELETE
+		FROM
+			user_body
+		WHERE
+			user_id = #{user_id}
+	</delete>
+	
+	<update id="updateUser" parameterType="User">
+	UPDATE user_body
+	SET
+		height = #{height}
+		, weight = #{weight}
+		, user_bmi = #{user_bmi}
+		, body_type = #{body_type}
+		, recom_id = #{recom_id}
+	WHERE
+		user_id = #{user_id}
+	</update>
+</mapper>
+
+
+
+
+
+
+

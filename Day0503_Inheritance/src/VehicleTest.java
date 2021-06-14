@@ -45,11 +45,15 @@ public class VehicleTest {
 		v1.setBrand("현대");
 		System.out.println(v1);
 		
-		Vehicle v2 = new Car(5000);
+		Car v2 = new Car(5000);
 		v2.setBrand("기아");
 		System.out.println(v2);
 		
+		//레퍼런스 변수 instanceof 객체 : 연산자 중에서 상속관계를 물을때 사용
+		System.out.println(v1 instanceof Car);
+		System.out.println(v1 instanceof Vehicle);
 		
+		System.out.println(v2 instanceof Vehicle);
 //		Car c1 = new Car();
 //		c1.setBrand("현대");
 //		c1.setDisplacement(4000);

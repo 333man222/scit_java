@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="diet.dao.InfoMapper">
+
+<!-- 회원 정보 저장 -->
+<insert id="insertDiet" parameterType="Diet">
+	insert into user_info
+	values
+	(#{user_id}, #{user_pwd}, 
+	#{user_name}, #{user_birth},#{user_gender}, 
+	#{user_phone}, #{user_area}, #{reg_date})
+	
+	insert into exercheck
+	values
+	(#{user_id}, #{recom_id}, 
+	#{recom_exer}, #{exer_status}, #{exer_date})
+</insert>
+
+<select id="selectDiet" parameterType="String" resultType="Diet">
+	select
+		user_id,
+		user_pwd,
+		user_name,
+		user_birth,
+		user_gender,
+		user_phone,
+		user_area,
+		to_char(reg_date, 'YYYY-MM-DD') as reg_date
+	from
+		user_info
+	where
+		user_id = #{user_id}
+</select>
+
+<delete id="deleteDiet" parameterType="String">
+	delete user_info
+	where user_id = #{user_id}
+</delete>
+
+<update id="updateDiet" parameterType="Diet">
+	update user_info
+	set
+		user_pwd = #{user_pwd},
+		user_phone = #{user_phone},
+		user_birth = #{user_birth},
+		user_area = #{user_area}
+	where
+		user_id = #{user_id}
+</update>
+
+</mapper>

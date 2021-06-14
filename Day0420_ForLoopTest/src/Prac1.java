@@ -26,16 +26,32 @@ public class Prac1 {
 			System.out.print("     번호 선택 :    ");
 
 			k = scanner.nextInt();
+			
+//			if(k == 1) {
+//				System.out.printf("%d 원은\t%.2f달러 입니다.", won,(won * doll));
+//			} else if (k == 2) {
+//				System.out.printf("%d 원은\t%.2f엔 입니다.", won,(won * yen));
+//				} else if (k == 3) {
+//					System.out.printf("%d 원은\t%.2f유로 입니다.", won,(won * euro));
+//			} else {
+//				System.out.println("번호를 잘못 입력 하셨습니다."); 
+//				return;
+//			}
+			
+			
+//			if(!(menu >=1 && menu <=3)) {
+//				System.out.println("잘못 입력하셨습니다.");
+//				return;
 			switch(k) {
 
 			case 1 : 
-				System.out.println( won + "원은 , " + (won * doll) + "달러 입니다.");
+				System.out.printf("%d 원은\t%.2f달러 입니다.", won,(won * doll));
 				break;
 			case 2 : 
-				System.out.println( won + "원은 , " + (won * yen) + "엔 입니다.");
+				System.out.printf("%d 원은\t%.2f유로 입니다.", won,(won * yen));
 				break;
 			case 3 : 
-				System.out.println( won + "원은 , " + (won * euro) + "유로 입니다.");
+				System.out.printf("%d 원은\t%.2f유로 입니다.", won,(won * euro));
 				break;
 			default :
 				System.out.println("잘못 입력하셨습니다.");

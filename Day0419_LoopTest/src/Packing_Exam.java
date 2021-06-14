@@ -18,7 +18,10 @@ public class Packing_Exam {
 		while(true) {
 			System.out.println("그램수 입력 : ");
 			g = scanner.nextInt();
-			if(g < 5 || g > 7) continue;
+			if(g < 5 || g > 7) {
+				System.out.println("무게가 너무 작거나 큽니다."); 
+				continue;
+			}
 
 			
 			++i;

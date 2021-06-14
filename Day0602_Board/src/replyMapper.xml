@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.dao.ReplyMapper">
+	<select id="listReply" parameterType="int" resultType="Reply">
+	SELECT
+		reply_seq
+		, writer
+		, text
+		, to_char(regdate, 'YYYY-MM-DD') as regdate
+	FROM 
+		reply
+	WHERE
+		board_seq = #{board_seq}				
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+	INSERT INTO reply
+		(reply_seq, board_seq, writer, text)
+	VALUES
+		(replyseq.nextval, #{board_seq}, #{writer}, #{text})
+	</insert>
+</mapper>

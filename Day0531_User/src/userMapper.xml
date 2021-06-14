@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<!-- namespace="Interface의 full name"  -->
+<mapper namespace="user.dao.UserMapper">
+
+	<insert id="insertUser" parameterType="User">
+		insert into userinfo
+		VALUES
+		(#{userid}, #{userpwd}, #{username}, #{phone}, #{birth})
+	</insert>
+	<select id="selectUser" parameterType="string" resultType="User">
+		SELECT
+			userid
+			, userpwd
+			, username
+			, phone
+			, To_char(birth, 'YYYY-MM-DD') as birth
+		FROM userinfo
+		WHERE
+			userid = #{userid}
+	</select>
+	
+	<select id="selectAll" resultType="User">
+	SELECT 
+		userid
+		, userpwd
+		, username
+		, phone
+		, to_char(birth, 'YYYY-MM-DD') as birth
+	FROM userinfo
+	ORDER BY userid
+	</select>
+	
+	<delete id="deleteUser" parameterType="string">
+	DELETE userinfo
+	WHERE 
+		userid = #{userid}
+	
+	</delete>
+	<update id="updateUser" parameterType="User">
+	UPDATE userinfo
+	SET
+		userpwd = #{userpwd}
+		, phone = #{phone}
+	WHERE
+		userid = #{userid}
+	</update>
+</mapper>

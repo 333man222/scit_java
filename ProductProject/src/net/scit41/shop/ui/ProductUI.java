@@ -98,6 +98,7 @@ public class ProductUI {
 		System.out.println("\n [[ 제품 정보 조회 ]]");
 		System.out.print("> 제품 아이디 : "); 
 		String pid = keyin.next();
+
 		
 		ProductVO vo = service.selectOne(pid);	//서비스에있는 selecOne은 ArrayList에서 정보를 찾는 것
 		if(vo == null) {

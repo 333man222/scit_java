@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 체크리스트 처리 SQL -->
+<mapper namespace="diet.dao.DietMapper">
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO checklist
+		VALUES
+		(#{check_seq}, #{user_id}, #{recom_id}, #{recom_exer}, #{exer_status}, #{exer_date})
+	</insert>
+	<select id="checklist" parameterType="int" resultType="User">
+		SELECT
+			check_seq
+			, user_id
+			, recom_id
+			, recom_exer
+			, exer_status
+			, exer_date
+		FROM
+			check
+		WHERE
+			check_seq = #{check_seq}
+	</select>
+	<delete id ="deleteCheck" parameterType = "int">
+		DELETE
+		FROM
+			check
+		WHERE
+			recom_seq = #{recom_seq}
+	
+	
+	</delete>
+
+</mapper>

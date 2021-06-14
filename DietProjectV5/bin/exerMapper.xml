@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="diet.dao.ExerMapper">
+
+<!-- 회원 정보 저장 -->
+<insert id="insertExer" parameterType="Exer">
+	insert into (check_seq, user_id, recom_id, recom_exer, exer_status, exer_time)
+	values
+	(check_seq.nextval,#{user_id}, #{recom_id}, 
+	#{recom_exer},#{exer_status}, #{exer_time})
+</insert>
+
+
+	<select id="selectExer" parameterType="map" resultType="Exer">
+		SELECT
+		check_seq,
+		hitcount
+		user_id,
+		recom_id,
+		recom_exer,
+		exer_status,
+		exer_time,
+		to_char(exer_date, 'YYYY-MM-DD') as exer_date
+		FROM
+			board
+		<where>
+			<if test="searchItem == 'title'">
+				user_id like '%'|| #{searchWord} ||'%'
+			</if>
+			<if test="searchItem == 'writer'">
+				 recom_id like '%'|| #{searchWord} ||'%'
+			</if>
+			<if test="searchItem == 'textcontent'">
+				recom_exer like '%'|| #{searchWord} ||'%'
+			</if>					
+		</where>
+	</select>
+
+<select id="selectExerId" parameterType="String" resultType="Exer">
+	select
+	insert into (check_seq, user_id, exer_status, exer_time,exer_date)
+	values
+	(check_seq.nextval,#{user_id},#{exer_status}, #{exer_time},#{exer_date})
+	from
+		checklist
+	where
+		user_id = #{user_id}
+</select>
+
+<delete id="deleteExer" parameterType="int">
+	delete checklist
+	where check_seq = #{check_seq}
+</delete>
+
+<select id="selectAll" resultType="Exer">
+		select
+		check_seq,
+		hitcount,
+		user_id,
+		recom_id,
+		recom_exer,
+		exer_status,
+		exer_time,
+		to_char(exer_date, 'YYYY-MM-DD') as exer_date
+		from checklist
+		order by check_seq
+</select>
+<update id="updateExer" parameterType="Exer">
+	update checklist
+	set
+		exer_status = #{exer_status},
+		exer_time = #{exer_time},
+		exer_date = #{exer_date}
+	where
+		check_seq = #{check_seq}
+</update>
+<update id="updateHitcount" parameterType="int">
+	update checklist
+	set
+		hitcount = hitcount+1
+	where
+		check_seq = #{check_seq}
+</update>
+<select id="selectExerNum" parameterType="int" resultType="Exer">
+	select
+		check_seq,
+		hitcount,
+		user_id,
+		recom_id,
+		recom_exer,
+		exer_status,
+		exer_time,
+		to_char(exer_date, 'YYYY-MM-DD') as exer_date
+	from 
+		checklist
+	where
+		check_seq = #{check_seq}
+</select>
+</mapper>

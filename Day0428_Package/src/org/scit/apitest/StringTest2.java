@@ -32,8 +32,8 @@ public class StringTest2 {
 		System.out.println(temp + "0번째 코드값" + code);
 		
 		// 빈 문자열인지의 확인
-		String temp1 = "";		//<<<<<<<<< 어떤 때 true?
-		System.out.println(temp.isEmpty());
+		String temp1 = "";		
+		System.out.println(temp1.isEmpty());
 		
 		// 지정한 문자열로 시작하는지  / 끝나는지 여부를 리턴
 		System.out.println(str.startsWith("동"));
@@ -51,7 +51,7 @@ public class StringTest2 {
 		String[] s = fruit.split(" ");
 		System.out.println("먹고 싶은 과일 : " + s[4]);
 		for(String f : s)
-			System.out.println(f);
+			System.out.println(f); 
 		
 	}
 

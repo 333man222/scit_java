@@ -8,10 +8,10 @@ public class PhoneService {
 	Scanner keyin = new Scanner(System.in);
 	PhoneVO[] list = new PhoneVO[20];
 	int count = 0;
-	
+
 	public PhoneService() {
 		int choice;
-		
+
 		while(true) {
 			menu();
 			choice = keyin.nextInt();
@@ -29,8 +29,8 @@ public class PhoneService {
 				printAll();
 				break;
 			case 0 :
-				
-				break;
+				System.out.println("***프로그램을 종료합니다.");
+				return;
 			default :
 				System.out.println("** 메뉴 선택 오류. 다시 선택해 주세요");
 			}
@@ -69,30 +69,30 @@ public class PhoneService {
 		System.out.print  ("     > 선 택 : ");
 		String relationship = keyin.next();
 
-		for(int i=0;i<count;++i) {
-			switch(relationship) {			
-				case "1" :
-					String Freind = "친구";
-					list[i].setRelationship(Freind);
-					System.out.println("1)친구로 등록");
-					break;
-				case "2" : 
-					String School = "학교";
-					list[i].setRelationship(School);
-					System.out.println("2)학교로 등록");
-					break;
-				case "3" : 
-					String Company = "회사";
-					list[i].setRelationship(Company);
-					System.out.println("3)회사로 등록");
-					break;
-				default : 
-					System.out.println("번호를 잘 못 입력하셨습니다.");
-					return;
-				}
-		}	
-		System.out.print("\n> 아이디를 입력 : ");
+		PhoneVO phoneVO = new PhoneVO();
+		switch(relationship) {			
+		case "1" :
+			phoneVO.setRelationship("친구");
+			System.out.println("1)친구로 등록");
+			break;
+		case "2" : 
+			phoneVO.setRelationship("학교");
+			System.out.println("2)학교로 등록");
+			break;
+		case "3" : 
+			phoneVO.setRelationship("회사");
+			System.out.println("3)회사로 등록");
+			break;
+		default : 
+			System.out.println("번호를 잘 못 입력하셨습니다.");
+			return;
+		}
+
+
+		System.out.print("\n> 이름을 입력 : ");
 		String name  = keyin.next();
+
+		phoneVO.setName(name);
 		for(int i = 0; i<count;++i) {
 			if(list[i].getName().equals(name)) {
 				System.out.println("동일한 아이디가 존재합니다.");
@@ -101,6 +101,7 @@ public class PhoneService {
 		}
 		System.out.print("> 전화번호를 입력 : ");
 		String PhoneNo  = keyin.next();
+		phoneVO.setPhone(PhoneNo);
 		for (int i = 0; i < PhoneNo.length(); i++) {
 
 			if (PhoneNo.charAt(i) < '0' || PhoneNo.charAt(i) > '9') {
@@ -114,7 +115,8 @@ public class PhoneService {
 				return;
 			}
 		}
-		list[count] = new PhoneVO(relationship,name,PhoneNo);
+		//		list[count] = new PhoneVO(relationship,name,PhoneNo);
+		list[count] = phoneVO;
 		count++;
 		System.out.println("가입이 완료 되었습니다.");
 	}
@@ -126,14 +128,13 @@ public class PhoneService {
 			System.out.println("** 정보가 없습니다.");
 			return;
 		}
-		System.out.print("> 아이디를 입력 : ");
+		System.out.print("> 이름을 입력 : ");
 		String name  = keyin.next();
 		for(int i = 0;i<count;++i) {
 			String uid = list[i].getName();
 			if(uid.equals(name)) {
-			System.out.println("\n   [[ 이    름 ]]");
-			list[i].output();
-			return;
+				System.out.println("\n   [[ 이    름 ]]");
+				list[i].output();
 			}
 		}	
 	}
@@ -146,18 +147,19 @@ public class PhoneService {
 			System.out.println("** 정보가 없습니다.");
 			return;
 		}
-		System.out.print("> 관계를 입력 : ");
+		System.out.print("> 1)친구 2)학교 3)회사 : ");
 		String relationship  = keyin.next();
-		for(int i = 0;i<count;++i) {
-			String uid = list[i].getRelationship();
-			if(uid.equals(relationship)) {
-			System.out.println("\n   [[ 본인과의 관계]]");
-			list[i].output();
-			return;
+		switch(relationship) {
+		case "1" : relationship = "친구"; break;
+		case "2" : relationship = "학교"; break;
+		case "3" : relationship = "회사"; break;
+		}			
+		for(int i=0; i<count; ++i)
+			if(list[i].getRelationship().equals(relationship)) {
+				list[i].output();
 			}
-		}	
 	}
-	
+
 	/**
 	 * 전체 데이터 조회
 	 */

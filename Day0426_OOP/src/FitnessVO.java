@@ -10,18 +10,17 @@ public class FitnessVO {
 	private String result;
 
 	// 생성자(Constructor) : JVM이 만든 기본생성자의 모양과 같음(안 만들더라도 자동생성됨)
-	public FitnessVO() {}
+	public FitnessVO() {
+	}
 
-	
 	public FitnessVO(String userid, String name, double height, double weight) {
 		this.userid = userid;
 		this.name = name;
 		this.height = height;
 		this.weight = weight;
-		calcBmi();	
+		calcBmi();
 		calcResult();
 	}
-
 
 	// Source -> Generate Getters and Setters... 에서 생성가능
 	public String getUserid() {
@@ -53,7 +52,7 @@ public class FitnessVO {
 	}
 
 	public void setName(String name) {
-	
+
 		this.name = name;
 	}
 

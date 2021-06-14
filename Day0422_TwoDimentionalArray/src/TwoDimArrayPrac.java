@@ -11,15 +11,16 @@ public class TwoDimArrayPrac {
 				if (i % 2 == 0) {
 					ary[i][j] = ++count;
 				} else {
-					ary[i][ary[i].length - (j + 1)] = ++count;
+					ary[i][ary[i].length - (j + 1)] = ++count;					 
 				}
 
 			}
+
 		}
 
 		for (int i = 0; i < ary.length; ++i) {
 			for (int j = 0; j < ary[0].length; ++j) {
-				System.out.printf("%-4d", ary[i][j]);
+				System.out.printf("%-3d", ary[i][j]);
 			}
 			System.out.println();
 		}
